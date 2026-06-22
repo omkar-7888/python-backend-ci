@@ -3,7 +3,7 @@
 # name of workflow
 name: Python CI Pipeline
 
-on: [workflow_dispatch]
+on: [push]
 
 jobs:
   python-ci:
