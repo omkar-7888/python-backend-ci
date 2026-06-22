@@ -11,6 +11,7 @@ def calculate_square(number):
 @app.route('/api/data', methods=['GET'])
 def get_data():
     result = calculate_square(4)
+    print("Hello I am checking this function")
     return jsonify({"message": "Python Backend Active", "square_of_four": result})
 
 
