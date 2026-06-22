@@ -1,0 +1,33 @@
+# test build and lint the python code
+
+# name of workflow
+name: Python CI Pipeline
+
+on: [workflow_dispatch]
+
+jobs:
+  python-ci:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+
+      - name: Setup Python Env
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python Dependancies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirments.txt
+
+      - name: Run Flask8 Linter check
+        run: flake8 . --count --max-line-length=127 --statistics
+
+      - name: Run Python Automation
+        run: pytest
+
